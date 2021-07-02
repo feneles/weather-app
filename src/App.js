@@ -10,15 +10,16 @@ import {
 import DisplayWeather from './components/DisplayWeather';
 import DisplayFooter from './components/DisplayFooter';
 
-import './App.css';
-
 const StyledWrapper = styled(Container)`
   && {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding-bottom: 25px;
-    background-color: rgba(16, 37, 66, 1);
+    min-width: 100vw;
     min-height: 100vh;
+    background-color: rgba(16, 37, 66, 1);
   }
 `;
 
@@ -26,6 +27,7 @@ const StyledHeader = styled(Typography)`
   && {
     color: white;
     font-weight: 700;
+    width: 100%;
   }
 `;
 
@@ -34,11 +36,16 @@ const InputWithStyles = styled(Input)`
     background-color: #fff;
     border: none;
     width: 180px;
-    min-width: 40vw;
     padding: 0 25px;
     border-radius: 25px 0 0 25px;
     height: 40px;
     margin-right: 2px;
+    @media screen and (min-width: 600px) {
+      width: 250px;
+    }
+    @media screen and (min-width: 1200px) {
+      width: 400px;
+    }
   }
 `;
 
@@ -106,7 +113,7 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const apiKey = 'd08b723901098e3b21a5256e152368b1';
-  const API = `http://api.openweathermap.org/data/2.5/forecast?q=${inputValue}&appid=${apiKey}&units=metric`;
+  const API = `https://api.openweathermap.org/data/2.5/forecast?q=${inputValue}&appid=${apiKey}&units=metric`;
 
   async function handleQuery(event) {
     event.preventDefault();
@@ -128,7 +135,7 @@ const App = () => {
   }
 
   return (
-    <StyledWrapper maxWidth="lg">
+    <StyledWrapper>
       <StyledHeader variant="h5">weather app</StyledHeader>
       {displayInput(setInputValue, handleQuery, inputValue, errorMessage)}
       {!isLoading && searchedCity.city !== undefined ? (

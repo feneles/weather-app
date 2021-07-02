@@ -8,12 +8,11 @@ const StyledPaper = styled(Paper)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px;
-    margin: 10px 5px;
+    padding: 4px;
+    margin: 8px 5px;
     width: calc(50% - 10px);
-    height: 150px;
+    height: 100%;
     @media screen and (min-width: 600px) {
-      height: 240px;
       padding: 8px;
     }
     @media screen and (min-width: 1200px) {
@@ -23,10 +22,6 @@ const StyledPaper = styled(Paper)`
       props.primary &&
       css`
         width: 100%;
-        height: 300px;
-        @media screen and (min-width: 600px) {
-          height: 350px;
-        }
         @media screen and (min-width: 1200px) {
           width: 100%;
         }
@@ -91,15 +86,29 @@ const DisplayWeather = props => {
     { day: weather.list[32] }
   ];
 
+  const day = [
+    'Sunday',
+    'Monday',
+    'Thursday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday'
+  ];
+
   const displayDays = days.map(el => {
     const temp = Math.round(el.day.main.temp);
     const date = el.day.dt_txt.split(' ')[0];
     const pressure = el.day.main.pressure;
     const sky = el.day.weather[0].main;
 
+    const d = new Date(date);
+    const n = d.getDay();
+
     return (
       <StyledPaper primary={el.primary} key={el.day.dt}>
         <DisplayWeatherIcon weather={sky} size={el.size} />
+        {displayWeatherInfo('Day:', `${day[n]}`, el.primary)}
         {displayWeatherInfo('Temp:', `${temp}℃`, el.primary)}
         {displayWeatherInfo('Date:', date, el.primary)}
         {displayWeatherInfo('Weather:', `${sky}`, el.primary)}

@@ -1,7 +1,8 @@
 import React from 'react';
-import CloudOutlinedIcon from '@material-ui/icons/CloudOutlined';
-import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
-import BeachAccessOutlinedIcon from '@material-ui/icons/BeachAccessOutlined';
+
+import sun from '../icons/sun.gif';
+import cloud from '../icons/cloud.gif';
+import rain from '../icons/rain.gif';
 
 const DisplayWeatherIcon = ({ weather, size }) => {
   let icon;
@@ -14,23 +15,26 @@ const DisplayWeatherIcon = ({ weather, size }) => {
   }
   if (weather === 'Sun' || weather === 'Clear') {
     icon = (
-      <WbSunnyOutlinedIcon
+      <img
+        src={sun}
+        alt="sunIcon"
         style={{ color: iconColor, width: iconSize, height: iconSize }}
-        large="true"
       />
     );
   } else if (weather === 'Rain') {
     icon = (
-      <BeachAccessOutlinedIcon
+      <img
+        src={rain}
+        alt="sunIcon"
         style={{ color: iconColor, width: iconSize, height: iconSize }}
-        large="true"
       />
     );
   } else {
     icon = (
-      <CloudOutlinedIcon
+      <img
+        src={cloud}
+        alt="sunIcon"
         style={{ color: iconColor, width: iconSize, height: iconSize }}
-        large="true"
       />
     );
   }
