@@ -89,7 +89,7 @@ const DisplayWeather = props => {
   const day = [
     'Sunday',
     'Monday',
-    'Thursday',
+    'Tuesday',
     'Wednesday',
     'Thursday',
     'Friday',
