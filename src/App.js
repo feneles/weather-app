@@ -87,9 +87,22 @@ const CircularStyle = styled(CircularProgress)`
   }
 `;
 
+const StyledInfo = styled(Typography)`
+  && {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 20px;
+    @media screen and (min-width: 1200px) {
+      font-size: 17px;
+    }
+  }
+`;
+
 const App = () => {
   const [inputValue, setInputValue] = useState('');
-  const [searchedCity, setSearchedCity] = useState({});
+  const [searchedCity, setSearchedCity] = useState([]);
   const [errorMessage, setErrorMessage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const apiKey = 'd08b723901098e3b21a5256e152368b1';
@@ -122,6 +135,11 @@ const App = () => {
         <DisplayWeather weather={searchedCity} />
       ) : null}
       {isLoading && <CircularStyle />}
+      {searchedCity.length === 0 && (
+        <StyledInfo>
+          Write your city name above to check the weather.
+        </StyledInfo>
+      )}
       <DisplayFooter />
     </StyledWrapper>
   );
